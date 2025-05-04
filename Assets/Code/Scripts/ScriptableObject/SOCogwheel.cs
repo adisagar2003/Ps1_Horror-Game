@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/SpawnManagerScriptableObject", order = 1)]
-public class SOCogwheel : ScriptableObject
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Cogwheel", order = 1)]
+public class SOCogwheel : SOBasePickable
 {
-    public Image sprite;
-    public float amount;
-    public string name;
+
 }

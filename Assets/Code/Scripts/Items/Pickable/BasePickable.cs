@@ -5,15 +5,17 @@ using UnityEngine;
 public class BasePickable : MonoBehaviour, IPickable
 {
    
-    [SerializeField] protected ScriptableObject _inventorySlot;
+    [SerializeField] protected SOBasePickable _inventorySlot;
     [SerializeField] protected  int amount;
-    public delegate void PickupEvent(ScriptableObject data, int amount);
+
+    public delegate void PickupEvent(SOBasePickable data, int amount);
     public static event PickupEvent OnPickupEvent;
 
     public virtual void Pickup()
     {
         // send a signal... 1 object is picked up, send object 
-        OnPickupEvent(_inventorySlot, amount);
+        OnPickupEvent?.Invoke(_inventorySlot, amount);
+        Debug.Log("Event Invoked");
     }
 
     public void FloatingMovement()

@@ -438,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventorySlot: {fileID: 11400000, guid: dd3f7b5e5fc7a67449ceae14b0941a05, type: 2}
   amount: 1
-  pickupSound: {fileID: 0}
+  pickupSound: {fileID: 424138223}
 --- !u!1 &693258173
 GameObject:
   m_ObjectHideFlags: 0
