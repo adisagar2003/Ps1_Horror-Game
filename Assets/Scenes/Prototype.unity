@@ -436,9 +436,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9718d216ebcadb643bd609622b030c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventorySlot: {fileID: 11400000, guid: dd3f7b5e5fc7a67449ceae14b0941a05, type: 2}
+  _inventorySlot: {fileID: 11400000, guid: 1b52bafaa2dc49f45940f83788df9989, type: 2}
   amount: 1
-  pickupSound: {fileID: 424138223}
+  pickupSound: {fileID: 8300000, guid: ddaf355233b5cf6469b1a98b12088799, type: 3}
+  pickupSoundVolume: 1.16
 --- !u!1 &693258173
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 1920832981}
+  scriptableObjects: []
 --- !u!1001 &928154629
 PrefabInstance:
   m_ObjectHideFlags: 0
