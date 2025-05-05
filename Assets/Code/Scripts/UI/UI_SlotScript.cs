@@ -6,22 +6,30 @@ using TMPro;
 public class UI_Slot : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Sprite sprite;
-    public string name;
+    public SOBasePickable so;
     public float amount;
 
     public bool isFilled { get; private set; } = false;
-    
+    public UI_Slot(SOBasePickable scriptableObject, int amt)
+    {
+        this.so = scriptableObject;
+        this.amount = amt;
+    }
+
     void Start()
     {
-        GetComponentInChildren<Image>().sprite = sprite;
+        UpdateDataInUI();
+    }
+
+    public void UpdateDataInUI()
+    {
+        GetComponentInChildren<Image>().sprite = so.sprite;
         GetComponentInChildren<TextMeshProUGUI>().text = amount.ToString();
     }
 
-
     public void FillSlot(Sprite image, string name, float amount)
     {
-        this.sprite = image;
+        this.so.sprite = image;
         this.name = name;
         this.amount = amount;
         isFilled = true;

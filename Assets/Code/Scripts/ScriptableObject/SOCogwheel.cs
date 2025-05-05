@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Cogwheel", order = 1)]
-public class SOCogwheel : SOBasePickable
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Pickable", order = 1)]
+public class SOPickable : SOBasePickable
 {
 
 }
