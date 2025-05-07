@@ -9,6 +9,8 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [SerializeField] private Transform physicsBody;
+    private PlayerState _playerState;
+
 
     [Header("Sensitivity")]
     [SerializeField] private float mouseX = 239.5f;
@@ -23,17 +25,18 @@ public class CameraControl : MonoBehaviour
 
     void Start()
     {
+        _playerState = FindFirstObjectByType<PlayerState>();
         HideCursor();
 
     }
 
-    private static void HideCursor()
+    public static void HideCursor()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private static void ShowCursor()
+    public static void ShowCursor()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -42,10 +45,19 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // react to horizontal and vertical input of the mouse,
-        HandleUpAndDownLook();
+        HandleLook();
+    }
 
-        // handle y input
+    private void HandleLook()
+    {
+        if (_playerState._currentState == PlayerState.PlayerCurrentState.IsInteracting) return;
+
+        HandleUpAndDownLook();
+        HandleLeftAndRight();
+    }
+
+    private void HandleLeftAndRight()
+    {
         float yInput = Input.GetAxis("Mouse X");
         yLookRotation += yInput * Time.deltaTime * mouseY;
 
@@ -54,7 +66,6 @@ public class CameraControl : MonoBehaviour
         Vector3 newRotationByYInput = new Vector3(0f, yLookRotation, 0f);
         physicsBody.transform.rotation = Quaternion.Euler(newRotationByYInput);
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, yLookRotation, transform.eulerAngles.z);
-        
     }
 
     private void HandleUpAndDownLook()

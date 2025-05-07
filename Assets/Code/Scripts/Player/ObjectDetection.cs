@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This detects object, references the object at e 
+/// </summary>
 public class ObjectDetection : MonoBehaviour
 {
     // Raycast from camera to middle of the screen.
@@ -21,7 +24,8 @@ public class ObjectDetection : MonoBehaviour
 
         if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward * _maxDetectionDistance, out hit, _maxDetectionDistance,_detectableLayers))
         {
-            Debug.LogWarning(hit.collider.gameObject.name);
+            IInteractable interactableReference = hit.collider.gameObject.GetComponent<IInteractable>();
+            if (Input.GetKey(KeyCode.E)) interactableReference.Interact();
         }
     }
 
