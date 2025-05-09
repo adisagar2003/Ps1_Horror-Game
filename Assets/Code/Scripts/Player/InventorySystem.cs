@@ -14,9 +14,9 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private List<GameObject> slots; // store all the inventory slot references
 
     // Todo: Send an event for updated amount to the slot object
-    public delegate void SendAmountUpdate(float amount);    
+    public delegate void SendAmountUpdate(float amount);
     public static event SendAmountUpdate OnSendAmountUpdate;
- 
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -35,7 +35,7 @@ public class InventorySystem : MonoBehaviour
     private void AddItemToInventory(SOBasePickable scriptableObjectData, int amount)
     {
         // loop through the slots to check an empty(not active slot)
-        foreach(GameObject s in slots)
+        foreach (GameObject s in slots)
         {
             UI_Slot currentSlotData = s.GetComponent<UI_Slot>();
 
@@ -60,7 +60,19 @@ public class InventorySystem : MonoBehaviour
 
         }
     }
-    
+
+    private static bool FindSlotsWithContent(GameObject g)
+    {
+        return g.GetComponent<UI_Slot>() != null;
+    }
+
+    Predicate<GameObject> getObjectsPredicate = FindSlotsWithContent;
+
+    public List<GameObject> GetCurrentItems()
+    {
+        return slots.FindAll(getObjectsPredicate);
+    }
+
     // Update is called once per frame
     void Update()
     {

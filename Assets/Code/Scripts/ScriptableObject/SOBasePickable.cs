@@ -7,4 +7,5 @@ public class SOBasePickable : ScriptableObject
 {
     public Sprite sprite;
     public string name;
+    public GameObject prefab;
 }
