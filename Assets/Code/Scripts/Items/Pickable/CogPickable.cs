@@ -8,11 +8,14 @@ public class CogPickable : BasePickable
     [SerializeField] private float xRotationSpeed = 10.0f;
     [SerializeField] private float yRotationSpeed = 10.0f;
     [SerializeField] private float pickupSoundVolume = 0.4f;
+  
     public override void Pickup()
     {
+        AudioSource.PlayClipAtPoint(pickupSound,
+        transform.position,
+        pickupSoundVolume);
         base.Pickup();
-        AudioSource.PlayClipAtPoint(pickupSound ,transform.position, pickupSoundVolume);
-        Destroy(gameObject);
+        DestroyAfterFrame();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -20,7 +23,6 @@ public class CogPickable : BasePickable
         if (collision.CompareTag("Player"))
         {
             Pickup();
-            Destroy(gameObject);
         }
      
     }

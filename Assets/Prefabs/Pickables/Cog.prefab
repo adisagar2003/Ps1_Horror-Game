@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 737a2cb9ff2bff94096533f9f044dd5d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999991
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 737a2cb9ff2bff94096533f9f044dd5d,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 737a2cb9ff2bff94096533f9f044dd5d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.0013589478
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 737a2cb9ff2bff94096533f9f044dd5d,
         type: 3}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9718d216ebcadb643bd609622b030c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventorySlot: {fileID: 11400000, guid: 1b52bafaa2dc49f45940f83788df9989, type: 2}
+  so: {fileID: 11400000, guid: 1b52bafaa2dc49f45940f83788df9989, type: 2}
   amount: 1
   pickupSound: {fileID: 8300000, guid: ddaf355233b5cf6469b1a98b12088799, type: 3}
   xRotationSpeed: 10

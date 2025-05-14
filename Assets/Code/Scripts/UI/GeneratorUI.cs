@@ -20,10 +20,27 @@ public class UI_Generator : MonoBehaviour
     {
         inventoryData = FindFirstObjectByType<InventorySystem>().GetCurrentItems();
         // add each item in inventory
+        foreach(GameObject obj in inventoryData)
+        {
+            Debug.Log(obj.name);
+            Debug.Log("--- inventoryGameObject ");
+        }
+
         foreach (GameObject s in inventoryData)
         {
             // extract ui slot
             UI_Slot uiSlot = s.GetComponent<UI_Slot>();
+            // add that UI slot data to the corresponding generator slot data
+            foreach (GameObject slot in generatorUISlots)
+            {
+                UI_Generator_Slot slotUI = slot.GetComponent<UI_Generator_Slot>();
+                if (!slotUI.isOccupied)
+                {
+                    // populate data in slot
+                    slotUI.FillSlot(uiSlot.so, 1);
+                    break;
+                }
+            }
             // implement in 
         }
 

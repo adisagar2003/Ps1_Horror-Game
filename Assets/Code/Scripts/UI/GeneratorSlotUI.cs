@@ -7,9 +7,10 @@ using UnityEngine;
 /// </summary>
 public class UI_Generator_Slot : MonoBehaviour
 {
-    [SerializeField] private GameObject modelPrefab;
-    private bool isOccupied = false;
+    [SerializeField] public Transform  modelPosition;
+    public bool isOccupied = false;
     private float yRotationSpeed = 10.0f;
+
     private void Start()
     {
     
@@ -19,17 +20,17 @@ public class UI_Generator_Slot : MonoBehaviour
 
     public void FillSlot(SOBasePickable so, float amount)
     {
-        modelPrefab = so.prefab;
         isOccupied = true;
+        Instantiate(so.prefab, transform);
     }
 
    
     private void Update()
     {
-         if (modelPrefab != null)
+         if (modelPosition != null)
         {
             float newRotationY = transform.rotation.y + Time.deltaTime * yRotationSpeed;
-            modelPrefab.transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
+            modelPosition.rotation = Quaternion.Euler(transform.eulerAngles.x,
                 newRotationY,
                 transform.eulerAngles.z);
  ;        } 

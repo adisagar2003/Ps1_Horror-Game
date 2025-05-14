@@ -26,7 +26,6 @@ public class Pickable : BasePickable
         if (collision.CompareTag("Player"))
         {
             Pickup();
-            Destroy(gameObject);
         }
 
     }
