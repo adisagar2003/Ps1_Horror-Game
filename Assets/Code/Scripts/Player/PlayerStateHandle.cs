@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Generator;
 
-public class PlayerState : MonoBehaviour
+public class PlayerStateHandle : MonoBehaviour
 {
-    public enum PlayerCurrentState {
+    public enum PlayerState {
         IsInteracting, 
         Playable
     }
 
-    public PlayerCurrentState _currentState;
+    public PlayerState currentState;
 
     private void Start()
     {
-        _currentState = PlayerCurrentState.Playable;    
+        currentState = PlayerState.Playable;    
     }
-    public void SwitchStateTo(PlayerCurrentState currState)
+    public void SwitchStateTo(PlayerState currState)
     {
-        _currentState = currState;
+        currentState = currState;
     }
 
     private void OnEnable()
@@ -35,11 +34,16 @@ public class PlayerState : MonoBehaviour
 
     public void EnablePlayer()
     {
-        _currentState = PlayerCurrentState.Playable;
+        currentState = PlayerState.Playable;
     }
 
     public void DisablePlayer()
     {
-        _currentState = PlayerCurrentState.IsInteracting;
+        currentState = PlayerState.IsInteracting;
+    }
+
+    public PlayerState GetCurrentState()
+    {
+        return currentState;
     }
 }

@@ -8,20 +8,20 @@ public class PlayerMovement : MonoBehaviour
     [Header("Physics")]
     [SerializeField] private float horizontalSpeed = 10.0f;
     [SerializeField] private float verticalSpeed = 10.0f;
-    private PlayerState playerState;
+    private PlayerStateHandle playerState;
 
     private Rigidbody _rb;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        playerState = FindFirstObjectByType<PlayerState>();
+        playerState = FindFirstObjectByType<PlayerStateHandle>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerState._currentState == PlayerState.PlayerCurrentState.IsInteracting) return;
+        if (playerState.GetCurrentState() == PlayerStateHandle.PlayerState.IsInteracting) return;
         HandleVelocity();
     }
 

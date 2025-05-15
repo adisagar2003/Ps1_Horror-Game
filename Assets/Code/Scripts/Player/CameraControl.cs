@@ -9,7 +9,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [SerializeField] private Transform physicsBody;
-    private PlayerState _playerState;
+    private PlayerStateHandle playerState;
 
 
     [Header("Sensitivity")]
@@ -25,7 +25,7 @@ public class CameraControl : MonoBehaviour
 
     void Start()
     {
-        _playerState = FindFirstObjectByType<PlayerState>();
+        playerState = FindFirstObjectByType<PlayerStateHandle>();
         HideCursor();
 
     }
@@ -50,8 +50,7 @@ public class CameraControl : MonoBehaviour
 
     private void HandleLook()
     {
-        if (_playerState._currentState == PlayerState.PlayerCurrentState.IsInteracting) return;
-
+        if (playerState.GetCurrentState() == PlayerStateHandle.PlayerState.IsInteracting) return;
         HandleUpAndDownLook();
         HandleLeftAndRight();
     }

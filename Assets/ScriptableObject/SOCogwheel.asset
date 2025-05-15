@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SOCogwheel
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 9f543a7d4ee4cc94da05565cd6fee89b, type: 3}
-  name: Cogwheel
+  name: Cog
   prefab: {fileID: 337431874358805020, guid: e3367e28e1515624d9f5a40f99d27e13, type: 3}

@@ -13,6 +13,7 @@ public class GlobalData : MonoBehaviour
 
     private Dictionary<SOBasePickable, int> items;
 
+    [SerializeField] private string debugString;
     // adding event 
     public delegate void AddItemDelegate(SOBasePickable item);
     public static event AddItemDelegate OnAddItem;
@@ -25,6 +26,11 @@ public class GlobalData : MonoBehaviour
     {
        items = new Dictionary<SOBasePickable, int>();
 
+    }
+
+    private void Update()
+    {
+        debugString = items.ToString();
     }
     private void OnEnable()
     {
@@ -64,4 +70,5 @@ public class GlobalData : MonoBehaviour
     {
         return items;
     }
+
 }

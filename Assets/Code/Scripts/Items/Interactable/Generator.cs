@@ -12,18 +12,17 @@ public class Generator : MonoBehaviour, IInteractable
     public delegate void EnablePlayer();
     public static event EnablePlayer OnEnablePlayer;
 
-    private PlayerState _playerState;
-    private UI_Generator _generatorUI;
+    private PlayerStateHandle _playerState;
+    private GeneratorUI _generatorUI;
 
     void Start()
     {
-        _playerState = FindFirstObjectByType<PlayerState>();
-        _generatorUI = GetComponent<UI_Generator>();
+        _playerState = FindFirstObjectByType<PlayerStateHandle>();
+        _generatorUI = GetComponent<GeneratorUI>();
     }
     public void Interact()
     {
         // show UI
-        _generatorUI.PopulateData();
         generatorUI.SetActive(true);
         OnDisablePlayer?.Invoke();
         CursorControl.ShowCursor();

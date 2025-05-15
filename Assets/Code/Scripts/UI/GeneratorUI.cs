@@ -2,55 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_Generator : MonoBehaviour
+/// <summary>
+/// Shows UI Generator
+/// </summary>
+public class GeneratorUI : MonoBehaviour
 {
-   private List<GameObject> inventoryData;
-    [SerializeField] private List<GameObject> generatorUISlots;
-
+    private GlobalData globalData;
+    private Dictionary<SOBasePickable, int> pickableAmountPairs;
+    
     private void Start()
     {
-        inventoryData = FindFirstObjectByType<InventorySystem>().GetCurrentItems();
-
+        globalData = FindFirstObjectByType<GlobalData>();
+        pickableAmountPairs = globalData.GetItems();
     }
 
     /// <summary>
-    /// to implement
+    /// On Start clicked
     /// </summary>
-    public void PopulateData()
+    public void OnStartButtonPressed()
     {
-        inventoryData = FindFirstObjectByType<InventorySystem>().GetCurrentItems();
-        // add each item in inventory
-        foreach(GameObject obj in inventoryData)
+
+        bool isCogValid = false;
+        bool isBatteryValid = false;
+
+        // check for 3 batteries, 2 cogs
+        CheckForValidPartsGenerator(ref isCogValid, ref isBatteryValid,3,2);
+
+        if (isBatteryValid && isCogValid)
         {
-            Debug.Log(obj.name);
-            Debug.Log("--- inventoryGameObject ");
+            Debug.Log("Generator Will Run");
+        }
+        else
+        {
+            Debug.Log("No way generator runs");
         }
 
-        foreach (GameObject s in inventoryData)
+    }
+
+    private void CheckForValidPartsGenerator(ref bool isCogValid, ref bool isBatteryValid, int batteryAmount, int cogAmount)
+    {
+        foreach (KeyValuePair<SOBasePickable, int> keyValue in pickableAmountPairs)
         {
-            // extract ui slot
-            UI_Slot uiSlot = s.GetComponent<UI_Slot>();
-            // add that UI slot data to the corresponding generator slot data
-            foreach (GameObject slot in generatorUISlots)
+            bool checkForBattery = (keyValue.Key.name == "Battery" && keyValue.Value >= batteryAmount);
+            bool checkForCog = (keyValue.Key.name == "Cog" && keyValue.Value >= cogAmount);
+            if (checkForBattery)
             {
-                UI_Generator_Slot slotUI = slot.GetComponent<UI_Generator_Slot>();
-                if (!slotUI.isOccupied)
-                {
-                    // populate data in slot
-                    slotUI.FillSlot(uiSlot.so, 1);
-                    break;
-                }
+                isBatteryValid = true;
             }
-            // implement in 
+
+            if (checkForCog)
+            {
+                isCogValid = true;
+            }
         }
-
-        Debug.Log(generatorUISlots);    
     }
 
-
-
-    private void Update()
-    {
-        
-    }
 }
