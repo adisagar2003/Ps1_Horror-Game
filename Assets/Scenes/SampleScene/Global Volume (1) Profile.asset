@@ -63,13 +63,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.82
+    m_Value: 1.32
   intensity:
     m_OverrideState: 1
-    m_Value: 1.67
+    m_Value: 1.51
   scatter:
-    m_OverrideState: 0
-    m_Value: 0.7
+    m_OverrideState: 1
+    m_Value: 0.42
   clamp:
     m_OverrideState: 0
     m_Value: 65472
@@ -123,7 +123,7 @@ MonoBehaviour:
   active: 1
   fogDensity:
     m_OverrideState: 1
-    m_Value: 2.9
+    m_Value: 1.72
   fogDistance:
     m_OverrideState: 1
     m_Value: 10.24
