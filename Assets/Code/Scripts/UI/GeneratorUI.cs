@@ -13,7 +13,7 @@ public class GeneratorUI : MonoBehaviour
 
     public delegate void TurnGeneratorOn();
     public static event TurnGeneratorOn OnGeneratorTurned;
-    
+
     private void Start()
     {
         globalData = FindFirstObjectByType<GlobalData>();
@@ -30,18 +30,18 @@ public class GeneratorUI : MonoBehaviour
         bool isCogValid = false;
         bool isBatteryValid = false;
 
-        // check for 3 batteries, 2 cogs
-        CheckForValidPartsGenerator(ref isCogValid, ref isBatteryValid,3,2);
+        // check for 1 battery, 1 cog
+        CheckForValidPartsGenerator(ref isCogValid, ref isBatteryValid,1,1);
 
         if (isBatteryValid && isCogValid)
         {
             Debug.Log("Generator Will Run");
             OnGeneratorTurned?.Invoke();
-            gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("No way generator runs");
+            DialogueSystem.Trigger("Not enough parts...");
         }
 
     }
@@ -54,7 +54,7 @@ public class GeneratorUI : MonoBehaviour
     /// <param name="isBatteryValid"></param>
     /// <param name="batteryAmount">Number of batteries required to turn on Generator</param>
     /// <param name="cogAmount"> Number of cogs to turn on Generator</param>
-    private void CheckForValidPartsGenerator(ref bool isCogValid, ref bool isBatteryValid, int batteryAmount, int cogAmount)
+    public void CheckForValidPartsGenerator(ref bool isCogValid, ref bool isBatteryValid, int batteryAmount, int cogAmount)
     {
         foreach (KeyValuePair<SOBasePickable, int> keyValue in pickableAmountPairs)
         {
@@ -70,6 +70,6 @@ public class GeneratorUI : MonoBehaviour
                 isCogValid = true;
             }
         }
-    }
+    }   
 
 }

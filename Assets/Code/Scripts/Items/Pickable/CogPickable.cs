@@ -15,7 +15,7 @@ public class CogPickable : BasePickable
         transform.position,
         pickupSoundVolume);
         base.Pickup();
-        DestroyAfterFrame();
+        StartCoroutine(DestroyAfterFrame());
     }
 
     private void OnTriggerEnter(Collider collision)

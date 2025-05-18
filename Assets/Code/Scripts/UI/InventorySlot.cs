@@ -24,6 +24,7 @@ public class InventorySlot : MonoBehaviour
         itemSprite.sprite = so.sprite;
         textUI.text = amount.ToString();
         this.isFilled = true;
+        gameObject.SetActive(true);
     }
     public void ClearSlot()
     {
