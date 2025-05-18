@@ -19,7 +19,7 @@ public class GlobalData : MonoBehaviour
     public static event AddItemDelegate OnAddItem;
     
     // removing event
-    public delegate void RemoveItemDelegate(BasePickable item);
+    public delegate void RemoveItemDelegate(SOBasePickable item);
     public static event RemoveItemDelegate OnRemoveItem;
 
     private void Start()

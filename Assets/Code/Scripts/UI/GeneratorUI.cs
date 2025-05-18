@@ -9,6 +9,10 @@ public class GeneratorUI : MonoBehaviour
 {
     private GlobalData globalData;
     private Dictionary<SOBasePickable, int> pickableAmountPairs;
+
+
+    public delegate void TurnGeneratorOn();
+    public static event TurnGeneratorOn OnGeneratorTurned;
     
     private void Start()
     {
@@ -16,6 +20,7 @@ public class GeneratorUI : MonoBehaviour
         pickableAmountPairs = globalData.GetItems();
     }
 
+    
     /// <summary>
     /// On Start clicked
     /// </summary>
@@ -31,6 +36,8 @@ public class GeneratorUI : MonoBehaviour
         if (isBatteryValid && isCogValid)
         {
             Debug.Log("Generator Will Run");
+            OnGeneratorTurned?.Invoke();
+            gameObject.SetActive(false);
         }
         else
         {
@@ -39,6 +46,14 @@ public class GeneratorUI : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// Checks for generator parts
+    /// </summary>
+    /// <param name="isCogValid">bool reference to declare on parent func</param>
+    /// <param name="isBatteryValid"></param>
+    /// <param name="batteryAmount">Number of batteries required to turn on Generator</param>
+    /// <param name="cogAmount"> Number of cogs to turn on Generator</param>
     private void CheckForValidPartsGenerator(ref bool isCogValid, ref bool isBatteryValid, int batteryAmount, int cogAmount)
     {
         foreach (KeyValuePair<SOBasePickable, int> keyValue in pickableAmountPairs)

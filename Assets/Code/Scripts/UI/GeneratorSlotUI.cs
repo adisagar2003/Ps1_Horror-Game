@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// This works as a slot for generator UI
 /// </summary>
-public class UI_Generator_Slot : MonoBehaviour
+public class GeneratorSlotUI : MonoBehaviour
 {
     [SerializeField] public Transform  modelPosition;
     public bool isOccupied = false;

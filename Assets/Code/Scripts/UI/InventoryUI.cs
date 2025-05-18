@@ -36,50 +36,51 @@ public class InventoryUI : MonoBehaviour
 
     private void RenderItems(SOBasePickable p)
     {
-        // get items from global data
-        Dictionary<SOBasePickable, int> globalDataRetrieved = globalData.GetItems();
+        Dictionary<SOBasePickable, int> valuePairs = globalData.GetItems();
+        bool objectFound = TryUpdateExistingSlot(p);
+        if (objectFound) return;
+        AddNewItemToSlot(p);
+    }
 
+    private void AddNewItemToSlot(SOBasePickable p)
+    {
         foreach (GameObject slot in slots)
         {
-            InventorySlot inventorySlotScript = slot.GetComponent<InventorySlot>();
-            if (!inventorySlotScript.IsFilled())
+            InventorySlot slotComponent = slot.GetComponent<InventorySlot>();
+            SOBasePickable slotScriptableObject = slotComponent.GetScriptableObject();
+            if (slotScriptableObject == null)
             {
-                inventorySlotScript.FillSlot(p, globalDataRetrieved[p]);
-                slot.gameObject.SetActive(true);
-                return;
+                slotComponent.FillSlot(p, 1);
+                Debug.Log("Added to inventory");
+                slot.SetActiveRecursively(true);
+                break;
             }
         }
     }
 
-
-    [Obsolete]
-    /// <summary>
-    /// add the picked-up item to the inventory slots.
-    /// </summary>
-    /// 
-    private void AddItemToInventory(BasePickable pickable)
+    private bool TryUpdateExistingSlot(SOBasePickable p)
     {
-       
+        bool objectFound = false;
+
+        // find the corresponding inventory slot,
+        foreach (GameObject slot in slots)
+        {
+            SOBasePickable slotScriptableObject = slot.GetComponent<InventorySlot>().GetScriptableObject();
+            if (slotScriptableObject?.name == p.name)
+            {
+                objectFound = true;
+                Debug.Log("Corresponding slot found, will update value");
+                slot.GetComponent<InventorySlot>().IncreaseAmount();
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+        return objectFound;
     }
 
-
-    [Obsolete]
-    private static bool FindSlotsWithContent(GameObject g)
-    {
-        return g.GetComponent<UI_Slot>() != null;
-    }
-
-    //[Obsolete]
-    //Predicate<GameObject> getObjectsPredicate = FindSlotsWithContent;
-
-
-    //[Obsolete]
-    //public List<GameObject> GetCurrentItems()
-    //{
-    //    return slots.FindAll(getObjectsPredicate);
-    //}
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))

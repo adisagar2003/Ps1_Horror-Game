@@ -6,7 +6,7 @@ using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
-    private bool isFilled = false;
+    [SerializeField] private bool isFilled = false;
     private SOBasePickable so;
     private int amount;
 
@@ -23,7 +23,7 @@ public class InventorySlot : MonoBehaviour
         // render ui 
         itemSprite.sprite = so.sprite;
         textUI.text = amount.ToString();
-        isFilled = true;
+        this.isFilled = true;
     }
     public void ClearSlot()
     {
@@ -35,8 +35,20 @@ public class InventorySlot : MonoBehaviour
         textUI.text = "";
     }
 
-    public bool IsFilled()
+    public bool GetIsFilled()
     {
         return isFilled;
     }
+
+    public SOBasePickable GetScriptableObject()
+    {
+        return so;
+    }
+
+    public void IncreaseAmount()
+    {
+        amount += 1;
+        textUI.text = amount.ToString();
+    }
+
 }
