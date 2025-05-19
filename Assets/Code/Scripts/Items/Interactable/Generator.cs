@@ -19,6 +19,8 @@ public class Generator : MonoBehaviour, IInteractable
     private bool isGeneratorRunning = false;
     [SerializeField] private Light generatorLight;
 
+    [SerializeField] private AudioSource startGeneratorAudio;
+
     // event: Makes gate button work.
     
     void Start()
@@ -40,6 +42,7 @@ public class Generator : MonoBehaviour, IInteractable
     [ContextMenu("Turn Generator On")]
     private void TurnGeneratorOn()
     {
+        startGeneratorAudio.Play();
         CloseGeneratorUI();
         isGeneratorRunning = true;
         generatorLight.color = Color.green;
