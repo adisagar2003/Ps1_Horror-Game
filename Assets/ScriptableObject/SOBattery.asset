@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8af0323ad87c104097f37302a9965d9, type: 3}
   m_Name: SOBattery
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3e74c2fb82e51a646b5d7f1d122d279f, type: 3}
+  sprite: {fileID: 21300000, guid: 47e9a92356e32f14f965756d57f3d737, type: 3}
   name: Battery
   prefab: {fileID: 919132149155446097, guid: 53ee4e0cff2dfab44b0b690020411700, type: 3}

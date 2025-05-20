@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,25 @@ using UnityEngine;
 public class GateButton : MonoBehaviour,IInteractable
 {
     private Generator generator;
+
+    private void OnEnable()
+    {
+        GeneratorUI.OnGeneratorTurned += ChangeColorToGreen;
+    }
+
+    private void OnDisable()
+    {
+        GeneratorUI.OnGeneratorTurned -= ChangeColorToGreen;
+    }
+
+    [ContextMenu("Change Color")]
+    private void ChangeColorToGreen()
+    {
+        Material buttonMaterial = gameObject.GetComponent<Renderer>().material;
+        buttonMaterial.SetColor("_BaseColor",Color.green);
+        buttonMaterial.SetColor("_EmissionColor", Color.green);
+        buttonMaterial.EnableKeyword("_EMISSION");
+    }
 
     public void Interact()
     {
