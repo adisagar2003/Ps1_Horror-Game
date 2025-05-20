@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9ab054d1d3c904a83518bb07c6d23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventorySlot: {fileID: 11400000, guid: 7a563d3c437ec01469aaaf476dacff35, type: 2}
+  so: {fileID: 11400000, guid: 7a563d3c437ec01469aaaf476dacff35, type: 2}
   amount: 1
   pickupSound: {fileID: 8300000, guid: ddaf355233b5cf6469b1a98b12088799, type: 3}
   xRotationSpeed: 10
