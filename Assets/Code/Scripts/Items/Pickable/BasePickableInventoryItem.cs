@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BasePickable : MonoBehaviour, IPickable
+public class BasePickableInventoryItem : MonoBehaviour, IPickable
 {
    
     [SerializeField] protected SOBasePickable so;

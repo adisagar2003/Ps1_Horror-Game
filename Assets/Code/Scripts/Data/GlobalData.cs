@@ -34,12 +34,12 @@ public class GlobalData : MonoBehaviour
     }
     private void OnEnable()
     {
-        BasePickable.OnPickupEvent += AddItem;
+        BasePickableInventoryItem.OnPickupEvent += AddItem;
     }
 
     private void OnDisable()
     {
-        BasePickable.OnPickupEvent -= AddItem;
+        BasePickableInventoryItem.OnPickupEvent -= AddItem;
     }
 
     private void AddItem(SOBasePickable so)

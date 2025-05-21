@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CogPickable : BasePickable
+public class CogPickable : BasePickableInventoryItem
 {
     [SerializeField] private AudioClip pickupSound;
     [SerializeField] private float xRotationSpeed = 10.0f;
