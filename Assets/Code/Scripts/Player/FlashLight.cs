@@ -7,6 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Simple script for flashlight on/off
 /// Also handles battery health
+/// self feedback, adding a lot of bools, need refactoring 
 /// </summary>
 public class FlashLight : MonoBehaviour
 {
@@ -21,9 +22,20 @@ public class FlashLight : MonoBehaviour
     private bool canBatteryDrain = false;
     private int startDrainingAfter = 4;
     [SerializeField] private float drainSpeed = 40.0f;
-   
+
+
     // private float 
 
+
+    private void OnEnable()
+    {
+        BatteryPickup.OnAddBattery += AddBattery;
+    }
+
+    private void OnDisable()
+    {
+        BatteryPickup.OnAddBattery -= AddBattery;
+    }
     private void Start()
     {
         _lightSource = GetComponentInChildren<Light>();
@@ -68,6 +80,7 @@ public class FlashLight : MonoBehaviour
         {
             canBatteryDrain = false;
             ToggleFlashlight();
+            isFlashlightOn = false;
             canToggleFlashlight = false;
         }
     }

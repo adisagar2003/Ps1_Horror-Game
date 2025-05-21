@@ -10,7 +10,6 @@ public class GeneratorUI : MonoBehaviour
     private GlobalData globalData;
     private Dictionary<SOBasePickable, int> pickableAmountPairs;
 
-
     public delegate void TurnGeneratorOn();
     public static event TurnGeneratorOn OnGeneratorTurned;
 
