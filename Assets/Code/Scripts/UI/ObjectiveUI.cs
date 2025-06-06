@@ -29,8 +29,9 @@ public class ObjectiveUI : MonoBehaviour
     private void RenderObjective(string obj)
     {
         // make new objective appear for 4 seconds
+        startFade = false;  // prevents text to fade right away
+        objective.GetComponent<TMP_Text>().alpha = 1f; // reappear 
         objective.text = obj;
-        // fade away after that
         StartCoroutine(FadeTextToTransparent(3.0f));
     }
 
@@ -46,6 +47,8 @@ public class ObjectiveUI : MonoBehaviour
         {
             objective.GetComponent<TMP_Text>().alpha -= Time.deltaTime * fadeSpeed;
         }
+
+        
     }
 
     private IEnumerator FadeTextToTransparent(float seconds)

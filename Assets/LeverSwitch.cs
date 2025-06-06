@@ -9,11 +9,17 @@ using UnityEngine;
 public class LeverSwitch : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject lights;
-
+    private ObjectiveManager objectiveManager;
     private bool isTurnedOn = false;
+
+    private void Start()
+    {
+        objectiveManager = FindFirstObjectByType<ObjectiveManager>();    
+    }
+
     public void Interact()
     {
-
+        objectiveManager.AddObjectiveToList("Find fuse");
         GetComponent<AudioSource>().Play();
         GetComponent<Animator>().SetTrigger("Flick"); // to tired rn to make it efficient..
         foreach(Light light in lights.GetComponentsInChildren<Light>())
@@ -21,6 +27,8 @@ public class LeverSwitch : MonoBehaviour, IInteractable
             light.enabled = true;
             gameObject.layer = 0; // makes the gameobject non interactable
         }
+
+        
     }
 
 }

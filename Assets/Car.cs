@@ -78,7 +78,6 @@ public class Car : MonoBehaviour,IInteractable
         }
 
         carHeadLights.RemoveAt(0);
-        Debug.Log("Added shit");    
     }
 
     // Update is called once per frame

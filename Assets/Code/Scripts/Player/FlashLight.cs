@@ -91,6 +91,10 @@ public class FlashLight : MonoBehaviour
         if (currentBattery > 0)
         {
             canToggleFlashlight = true;
+        }
+        else
+        {
+            canToggleFlashlight = true;
             ToggleFlashlight();
         }
         canBatteryDrain = true;
