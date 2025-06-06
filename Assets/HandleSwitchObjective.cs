@@ -28,6 +28,6 @@ public class HandleSwitchObjective : MonoBehaviour
     private IEnumerator DisableCollider()
     {
         yield return null;
-        gameObject.SetActive(false);
+        gameObject.SetActive(false) ;
     }
 }

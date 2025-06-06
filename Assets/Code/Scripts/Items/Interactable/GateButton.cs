@@ -32,7 +32,7 @@ public class GateButton : MonoBehaviour,IInteractable
         if (generator.GetIsGeneratorRunning())
         {
             gameObject.layer = 0; // silly workaround to stop interact UI
-            SceneSystem.Trigger("level2", 4);
+            SceneSystem.Trigger("Level2", 4);
             // Invoke scene shift event 
         }
         else
