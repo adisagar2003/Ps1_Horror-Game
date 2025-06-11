@@ -48,11 +48,11 @@ public class GlobalData : MonoBehaviour
         if (items.ContainsKey(so))
         {
             items[so] += 1;
-            foundItem = true;
+            foundItem = true; 
         }
         else
         {
-            items.Add(so, 1);
+            items.Add(so, 1); 
             foundItem = true;
         }
         OnAddItem?.Invoke(so);
