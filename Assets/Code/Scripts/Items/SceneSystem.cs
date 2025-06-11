@@ -8,13 +8,17 @@ using UnityEngine.SceneManagement;
 public class SceneSystem : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private Image sceneTransitionImage;
+    private Image sceneTransitionImage;
     [SerializeField] private float fadeSpeed = 10.0f;
 
     // events
     public delegate void SceneShift(string sceneName, int fadeTime);
     public static event SceneShift OnSceneShift;
 
+    private void Start()
+    {
+        sceneTransitionImage = GameObject.Find("SceneTransitionFade").GetComponent<Image>();
+    }
     private void OnEnable()
     {
         SceneSystem.OnSceneShift += ChangeScene;

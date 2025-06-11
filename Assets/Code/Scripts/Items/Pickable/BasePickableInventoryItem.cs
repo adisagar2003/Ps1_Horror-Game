@@ -12,11 +12,22 @@ public class BasePickableInventoryItem : MonoBehaviour, IPickable
     public delegate void PickupEvent(SOBasePickable p);
     public static event PickupEvent OnPickupEvent;
 
+    [SerializeField] private float yRotationSpeed = 2.0f;
+
     public virtual void Pickup()
     {
         // send a signal... 1 object is picked up, send object 
         OnPickupEvent?.Invoke(so);
         Debug.Log("Event Invoked");
+        Destroy(gameObject, 0.5f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Pickup();
+        }
     }
 
     public Sprite GetSprite()
@@ -29,6 +40,11 @@ public class BasePickableInventoryItem : MonoBehaviour, IPickable
         return so;
     }
 
+    private void Update()
+    {
+        FloatingMovement();
+    }
+
     public void AddAmount(int quantity)
     {
         amount += quantity;
@@ -36,7 +52,11 @@ public class BasePickableInventoryItem : MonoBehaviour, IPickable
 
     public void FloatingMovement()
     {
-        
+        float xRotation = transform.rotation.x;
+        float yRotation = transform.rotation.y + yRotationSpeed * Time.time; 
+        float zRotation = transform.rotation.z;
+
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
     }
 
     protected IEnumerator DestroyAfterFrame()

@@ -35,7 +35,6 @@ public class DialogueSystem : MonoBehaviour
     private IEnumerator ShowDialogue(string message)
     {
         isShowingDialogue = true;
-        Debug.Log("Message");
         messageUI.text = message;
         yield return new WaitForSeconds(3.0f);
         messageUI.text = "";

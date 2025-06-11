@@ -74,7 +74,6 @@ public class FlashLight : MonoBehaviour
         if (!canBatteryDrain) return;
         if (!isFlashlightOn) return;
         currentBattery = currentBattery - Time.deltaTime * drainSpeed;
-        Debug.Log(currentBattery);
         // if battery reaches below 0 
         if (currentBattery < 0.0f)
         {

@@ -13,6 +13,8 @@ public class ObjectiveManager : MonoBehaviour {
     public static event AddObjective OnAddObjective;
     [SerializeField] private AudioSource newObjective;
 
+    private ObjectiveManager objectiveManager;
+
     public void AddObjectiveToList(string objective)
     {
         objectives.Add(objective);
@@ -21,7 +23,7 @@ public class ObjectiveManager : MonoBehaviour {
         // Invoke event to show objective on UI.
         OnAddObjective?.Invoke($"Objective: {objective}");
     }
-    
+
     // Remove the latest objective
     public void RemoveObjective()
     {
