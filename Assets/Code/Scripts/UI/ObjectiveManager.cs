@@ -11,9 +11,22 @@ public class ObjectiveManager : MonoBehaviour {
     [SerializeField] private List<string> objectives;
     public delegate void AddObjective(string obj);
     public static event AddObjective OnAddObjective;
+
+    public delegate void AddObjectiveUI(string obj);
+    public static event AddObjectiveUI OnAddObjectiveUI;
     [SerializeField] private AudioSource newObjective;
 
     private ObjectiveManager objectiveManager;
+
+    private void OnEnable()
+    {
+        ObjectiveManager.OnAddObjective += AddObjectiveToList;
+    }
+
+    private void OnDisable()
+    {
+        ObjectiveManager.OnAddObjective -= AddObjectiveToList;
+    }
 
     public void AddObjectiveToList(string objective)
     {
@@ -21,6 +34,12 @@ public class ObjectiveManager : MonoBehaviour {
         // play new objective sound
         newObjective.Play();
         // Invoke event to show objective on UI.
+        OnAddObjectiveUI?.Invoke(objective);
+    }
+
+
+    public static void Trigger(string objective)
+    {
         OnAddObjective?.Invoke($"Objective: {objective}");
     }
 

@@ -8,17 +8,17 @@ public class ObjectiveUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI objective;
     private bool startFade = false;
-    [SerializeField] private float fadeSpeed = 0.03f;
+    [SerializeField] private float fadeSpeed = 10.3f;
 
     private void OnEnable()
     {
-        ObjectiveManager.OnAddObjective += RenderObjective;
+        ObjectiveManager.OnAddObjectiveUI += RenderObjective;
     }
 
 
     private void OnDisable()
     {
-        ObjectiveManager.OnAddObjective -= RenderObjective;
+        ObjectiveManager.OnAddObjectiveUI -= RenderObjective;
     }
 
     private void Start()
@@ -51,6 +51,7 @@ public class ObjectiveUI : MonoBehaviour
         
     }
 
+ 
     private IEnumerator FadeTextToTransparent(float seconds)
     {
         yield return new WaitForSeconds(seconds);

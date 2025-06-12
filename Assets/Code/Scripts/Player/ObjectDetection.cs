@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 /// <summary>
 /// This detects object, references the object at e 
 /// </summary>
@@ -10,8 +10,8 @@ public class ObjectDetection : MonoBehaviour
     // Raycast from camera to middle of the screen.
     [SerializeField] LayerMask detectableLayers;
     [SerializeField] private float maxDetectionDistance;
-    [SerializeField] private GameObject interactionUI;
-
+    private GameObject interactionUI;
+    private TextMeshProUGUI textComponent;
     private PlayerStateHandle playerState;
     private Camera mainCamera;
 
@@ -19,6 +19,8 @@ public class ObjectDetection : MonoBehaviour
     {
         mainCamera = GetComponentInChildren<Camera>();
         playerState = GetComponentInParent<PlayerStateHandle>();
+        interactionUI = GameObject.Find("PressE");
+        textComponent = interactionUI.GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -34,13 +36,13 @@ public class ObjectDetection : MonoBehaviour
 
         if (PlayerIsLookingAtInteractable(out hit) && playerIsPlayable)
         {
-            interactionUI.SetActive(true); // sets the 'Press E to interact' UI
+            textComponent.text = "Press E to interact";
             IInteractable interactableReference = hit.collider.gameObject.GetComponent<IInteractable>();
             if (Input.GetKey(KeyCode.E)) interactableReference.Interact();
         }
         else
         {
-            interactionUI.SetActive(false); // sets the 'Press E to interact' UI
+           textComponent.text = ""; // sets the 'Press E to interact' UI
         }
     }
 

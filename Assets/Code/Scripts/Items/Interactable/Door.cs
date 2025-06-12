@@ -8,6 +8,10 @@ public class Door : MonoBehaviour, IInteractable
     private GlobalData globalData;
     [SerializeField] private SOBasePickable fuseScriptableObject;
     [SerializeField] AudioSource doorCannotOpenSound;
+    void Start()
+    {
+        globalData = FindFirstObjectByType<GlobalData>();   
+    }
     public void Interact()
     {
         if (PlayerHasFuse())
@@ -17,7 +21,7 @@ public class Door : MonoBehaviour, IInteractable
         else
         {
             DialogueSystem.Trigger("Fuse is missing");
-            doorCannotOpenSound.Play();
+            doorCannotOpenSound.Play(); 
         }
     }
     
@@ -27,11 +31,6 @@ public class Door : MonoBehaviour, IInteractable
         return false;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        globalData = FindFirstObjectByType<GlobalData>();   
-    }
 
     // Update is called once per frame
     void Update()
