@@ -34,7 +34,6 @@ public class SpiderLegMovementHandle : MonoBehaviour
             // reached too far, now lerp the current position to target position
             stepTimer += Time.deltaTime * sineFluctuation;
             float zValue = Mathf.Sin(stepTimer) * sineAmplitude;
-            Debug.Log(zValue);
             Vector3 currentLegIKTargetPosition = legIKConstraint.data.target.position;
             legIKConstraint.data.target.position = new Vector3(currentLegIKTargetPosition.x,
                 currentLegIKTargetPosition.y,
