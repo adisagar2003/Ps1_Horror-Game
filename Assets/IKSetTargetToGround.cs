@@ -16,7 +16,9 @@ public class IKSetTarget : MonoBehaviour
     private Vector3 currentIKPosition;
     private RaycastHit hit;
     [SerializeField] private GameObject currentBodyPosition; // gameobject attached to spider that calculates where to shift IK
-    [SerializeField] private float distanceNeededToShiftLeg = 1.46f;
+    [SerializeField] private float distanceNeededToShiftLeg = 1.00f;
+    [SerializeField] private bool canCurrentIkPositionLerp = false;
+    [SerializeField] private float ikLerpSpeed = 10.0f;
 
     void Start()
     {
@@ -27,19 +29,31 @@ public class IKSetTarget : MonoBehaviour
     void Update()
     {
 
-        ikTarget.transform.position = currentIKPosition;
+        ikTarget.transform.position = currentIKPosition; // keeps position of leg in-place when moving body
 
+        UpdateLegPositionIfFar();
 
+        LerpIKToNewPosition(hit.point + ikOffset);
+
+    }
+
+    private void LerpIKToNewPosition(Vector3 newPosition)
+    {
+        if (canCurrentIkPositionLerp)
+        {
+            currentIKPosition = Vector3.Lerp(currentIKPosition, newPosition, Time.deltaTime * ikLerpSpeed);
+            if (newPosition == currentIKPosition) canCurrentIkPositionLerp = false;
+        }
+    }
+
+    private void UpdateLegPositionIfFar()
+    {
         float distanceBetweenTargetAndBody = Vector3.Distance(currentBodyPosition.transform.position, currentIKPosition);
-        Debug.Log(distanceBetweenTargetAndBody);
-        //Debug.Log(distanceBetweenTargetAndBody);
-
         if (distanceBetweenTargetAndBody > distanceNeededToShiftLeg)
         {
             UpdateTargetIKPosition();
         }
     }
-
 
     private void UpdateTargetIKPosition()
     {
@@ -47,7 +61,8 @@ public class IKSetTarget : MonoBehaviour
         {
             Debug.DrawRay(raycastOrigin.position, raycastOrigin.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
             ikTarget.transform.position = hit.point + ikOffset;
-            currentIKPosition = hit.point + ikOffset;
+            canCurrentIkPositionLerp = true;
+            LerpIKToNewPosition(hit.point + ikOffset);
         }
     }
 
