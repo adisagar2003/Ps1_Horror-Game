@@ -2696,7 +2696,7 @@ GameObject:
   - component: {fileID: 85092396}
   - component: {fileID: 85092398}
   - component: {fileID: 85092397}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7180,17 +7180,17 @@ PrefabInstance:
     - target: {fileID: 4003533045157369783, guid: d2814028d9050854d94f3774d3a0a856,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.9
+      value: 40.03
       objectReference: {fileID: 0}
     - target: {fileID: 4003533045157369783, guid: d2814028d9050854d94f3774d3a0a856,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4003533045157369783, guid: d2814028d9050854d94f3774d3a0a856,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48.5
+      value: 46.81
       objectReference: {fileID: 0}
     - target: {fileID: 4003533045157369783, guid: d2814028d9050854d94f3774d3a0a856,
         type: 3}
@@ -17640,7 +17640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 766050356}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: V1A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26559,7 +26559,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: -876546973899608171, guid: ae4f27258960db04788c8f3c562b2139, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31724,6 +31724,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5504739776140939218, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504739776140939218, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504739776140939218, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5553623098601133403, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
         type: 3}
       propertyPath: m_Layer
@@ -32037,14 +32052,56 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2343256612988865789, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1310029267}
+    - targetCorrespondingSourceObject: {fileID: 2343256612988865789, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1310029271}
   m_SourcePrefab: {fileID: 100100000, guid: 23fb4bb40a9d5e74dacc781cf52a68a7, type: 3}
+--- !u!1 &1310029260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2343256612988865789, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1310029259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1310029266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8177623981753064318, guid: 23fb4bb40a9d5e74dacc781cf52a68a7,
     type: 3}
   m_PrefabInstance: {fileID: 1310029259}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1310029267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310029260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce09a08510bcd9439c0cbc92df109eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialToSwitch: {fileID: 2100000, guid: a95bf01d1e6d3754abc2f61af3eb5391, type: 2}
+--- !u!114 &1310029271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310029260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e173f20154cd064bb37c0bacc480859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1311762813
 GameObject:
   m_ObjectHideFlags: 0
@@ -34003,9 +34060,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd9f12c332521a49a7cd624756fe107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialAbilityColor: {r: 0, g: 0, b: 1, a: 1}
+  specialAbilityColor: {r: 0.6679245, g: 0.6679245, b: 0.0037806502, a: 1}
   volume: {fileID: 620339946}
-  lerpTime: 19.14
+  lerpTime: 2.8
   spiderXRayCamera: {fileID: 63283386}
   spiderDetectionLayer:
     serializedVersion: 2

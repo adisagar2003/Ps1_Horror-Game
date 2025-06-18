@@ -23,6 +23,11 @@ public class MonsterVision : MonoBehaviour
     [SerializeField] private LayerMask spiderDetectionLayer;
     private bool canUseVision = true;
 
+
+    // material switch signal
+    public delegate void SwitchMaterial();
+    public static event SwitchMaterial SwitchMaterialSignal;
+
     void Start()
     {
         volume.profile.TryGet<UnityEngine.Rendering.Universal.ColorAdjustments>(out this.colorAdjustments);
@@ -38,6 +43,7 @@ public class MonsterVision : MonoBehaviour
             if (!canUseVision) return;
             Debug.Log("Enable special");
             StartCoroutine(LerpColor(colorAdjustments.colorFilter.value, specialAbilityColor, lerpTime));
+            SwitchMaterialSignal?.Invoke();
             spiderXRayCamera.cullingMask = spiderDetectionLayer;
         }
     }
