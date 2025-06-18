@@ -45,7 +45,7 @@ public class MonsterMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(currentDestination, 1f);
+        Gizmos.DrawSphere(currentDestination, minDistanceToSetNewDestination);
     }
 
     private void Update()

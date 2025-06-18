@@ -523,7 +523,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   maxDetectionDistance: 0
-  interactionUI: {fileID: 0}
 --- !u!1 &7145454219193208194
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,6 +46,7 @@ MonoBehaviour:
   - {fileID: -5442402335100708544}
   - {fileID: 488549482228165965}
   - {fileID: 7815880212258820405}
+  - {fileID: 9029520952532756098}
 --- !u!114 &488549482228165965
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -108,7 +109,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.339
+    m_Value: 0.232
 --- !u!114 &5755773418436430549
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -177,3 +178,25 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &9029520952532756098
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a1bd58dd7548198609eabd8ae2bb7d, type: 3}
+  m_Name: Pixelation
+  m_EditorClassIdentifier: 
+  active: 0
+  widthPixelation:
+    m_OverrideState: 1
+    m_Value: 512
+  heightPixelation:
+    m_OverrideState: 1
+    m_Value: 512
+  colorPrecision:
+    m_OverrideState: 1
+    m_Value: 32

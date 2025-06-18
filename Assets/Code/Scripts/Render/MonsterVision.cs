@@ -7,13 +7,22 @@ using UnityEngine;
 /// <summary>
 /// Special ability of player to see through walls and 
 /// detect monster for a small period of time.
+/// Sets culling mask from nothing to spider in spiderXray camera
+/// 
 /// </summary>
 public class MonsterVision : MonoBehaviour
 {
+    // post processing
     [SerializeField] private Color specialAbilityColor = Color.blue;
     [SerializeField] private Volume volume;
+    [SerializeField] private float lerpTime = 5.0f;
     private UnityEngine.Rendering.Universal.ColorAdjustments colorAdjustments;
-    // Start is called before the first frame update
+
+    // culling handle
+    [SerializeField] private Camera spiderXRayCamera;
+    [SerializeField] private LayerMask spiderDetectionLayer;
+    private bool canUseVision = true;
+
     void Start()
     {
         volume.profile.TryGet<UnityEngine.Rendering.Universal.ColorAdjustments>(out this.colorAdjustments);
@@ -26,9 +35,30 @@ public class MonsterVision : MonoBehaviour
         // Future migration 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            if (!canUseVision) return;
             Debug.Log("Enable special");
-            Debug.Log(colorAdjustments);
-            colorAdjustments.colorFilter.value = specialAbilityColor;
+            StartCoroutine(LerpColor(colorAdjustments.colorFilter.value, specialAbilityColor, lerpTime));
+            spiderXRayCamera.cullingMask = spiderDetectionLayer;
         }
     }
+
+    private IEnumerator LerpColor(Color fromColor, Color toColor, float duration)
+    {
+
+        canUseVision = false;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration; // 0 to 1
+            colorAdjustments.colorFilter.value = Color.Lerp(fromColor, toColor, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        colorAdjustments.colorFilter.value = toColor;
+        canUseVision = true;
+
+    }
+
 }

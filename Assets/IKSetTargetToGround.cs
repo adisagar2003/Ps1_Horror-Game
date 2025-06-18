@@ -28,13 +28,9 @@ public class IKSetTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         ikTarget.transform.position = currentIKPosition; // keeps position of leg in-place when moving body
-
         UpdateLegPositionIfFar();
-
         LerpIKToNewPosition(hit.point + ikOffset);
-
     }
 
     private void LerpIKToNewPosition(Vector3 newPosition)
