@@ -51,25 +51,24 @@ public class MonsterVision : MonoBehaviour
 
     }
 
-    private void VisionEnable()
+    public void VisionEnable()
     {
         if (!canUseVision) return;
-        Debug.Log("Enable special");
-        StartCoroutine(LerpColor(colorAdjustments.colorFilter.value, specialAbilityColor, lerpTime));
+        StartCoroutine(LerpColorAndHandleCanUseVision(colorAdjustments.colorFilter.value, specialAbilityColor, lerpTime));
         SwitchMaterialSignal?.Invoke();
         spiderXRayCamera.cullingMask = spiderDetectionLayer;
     }
 
-    private void VisionDisable()
+    public void VisionDisable()
     {
         if (!canUseVision) return;
         Debug.Log("Disable special");
-        StartCoroutine(LerpColor(specialAbilityColor, currentColor, lerpTime));
+        StartCoroutine(LerpColorAndHandleCanUseVisionOnce(specialAbilityColor, currentColor, lerpTime));
         SwitchMaterialSignal?.Invoke();
-        spiderXRayCamera.cullingMask = spiderDetectionLayer;
+        spiderXRayCamera.cullingMask = 0;
     }
 
-    private IEnumerator LerpColor(Color fromColor, Color toColor, float duration)
+    private IEnumerator LerpColorAndHandleCanUseVision(Color fromColor, Color toColor, float duration)
     {
 
         canUseVision = false;
@@ -85,7 +84,26 @@ public class MonsterVision : MonoBehaviour
 
         colorAdjustments.colorFilter.value = toColor;
         canUseVision = true;
-
+        VisionDisable(); // reset all changes
     }
+
+    private IEnumerator LerpColorAndHandleCanUseVisionOnce(Color fromColor, Color toColor, float duration)
+    {
+
+        canUseVision = false;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration; // 0 to 1
+            colorAdjustments.colorFilter.value = Color.Lerp(fromColor, toColor, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        colorAdjustments.colorFilter.value = toColor;
+        canUseVision = true;
+    }
+
 
 }

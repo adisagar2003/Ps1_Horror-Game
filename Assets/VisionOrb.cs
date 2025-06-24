@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class VisionOrb : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private MonsterVision monsterVision;
+    [SerializeField] private AudioClip itemAcquiredAudio;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        monsterVision = FindFirstObjectByType<MonsterVision>();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        monsterVision.VisionEnable();
+        AudioSource.PlayClipAtPoint(itemAcquiredAudio, transform.position);
+        Destroy(gameObject);
     }
 }
