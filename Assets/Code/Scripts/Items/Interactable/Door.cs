@@ -6,8 +6,10 @@ public class Door : MonoBehaviour, IInteractable
 {
 
     private GlobalData globalData;
-    [SerializeField] private SOBasePickable fuseScriptableObject;
+    [SerializeField] private List<SOBasePickable> objectsNeededToTriggerDoor;
     [SerializeField] AudioSource doorCannotOpenSound;
+    [SerializeField] private string missingObjectsDialogue = "";
+    [SerializeField] private string nextLevelName;
     void Start()
     {
         globalData = FindFirstObjectByType<GlobalData>();   
@@ -16,19 +18,23 @@ public class Door : MonoBehaviour, IInteractable
     {
         if (PlayerHasFuse())
         {
-            SceneSystem.Trigger("Level3", 1);
+            SceneSystem.Trigger(nextLevelName, 1);
         }
         else
         {
-            DialogueSystem.Trigger("Fuse is missing");
+            DialogueSystem.Trigger(missingObjectsDialogue);
             doorCannotOpenSound.Play(); 
         }
     }
     
     private bool PlayerHasFuse()
     {
-        if (globalData.GetItems().ContainsKey(fuseScriptableObject)) return true;
-        return false;
+        foreach (SOBasePickable s in objectsNeededToTriggerDoor)
+        {
+            if (!globalData.GetItems().ContainsKey(s)) return false;
+        }
+
+        return true;
     }
 
 

@@ -17,6 +17,7 @@ public class MonsterVision : MonoBehaviour
     [SerializeField] private Volume volume;
     [SerializeField] private float lerpTime = 5.0f;
     private UnityEngine.Rendering.Universal.ColorAdjustments colorAdjustments;
+    private Color currentColor;
 
     // culling handle
     [SerializeField] private Camera spiderXRayCamera;
@@ -28,24 +29,44 @@ public class MonsterVision : MonoBehaviour
     public delegate void SwitchMaterial();
     public static event SwitchMaterial SwitchMaterialSignal;
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     void Start()
     {
         volume.profile.TryGet<UnityEngine.Rendering.Universal.ColorAdjustments>(out this.colorAdjustments);
+        currentColor = colorAdjustments.colorFilter.value;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        // Future migration 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (!canUseVision) return;
-            Debug.Log("Enable special");
-            StartCoroutine(LerpColor(colorAdjustments.colorFilter.value, specialAbilityColor, lerpTime));
-            SwitchMaterialSignal?.Invoke();
-            spiderXRayCamera.cullingMask = spiderDetectionLayer;
-        }
+    }
+
+    private void VisionEnable()
+    {
+        if (!canUseVision) return;
+        Debug.Log("Enable special");
+        StartCoroutine(LerpColor(colorAdjustments.colorFilter.value, specialAbilityColor, lerpTime));
+        SwitchMaterialSignal?.Invoke();
+        spiderXRayCamera.cullingMask = spiderDetectionLayer;
+    }
+
+    private void VisionDisable()
+    {
+        if (!canUseVision) return;
+        Debug.Log("Disable special");
+        StartCoroutine(LerpColor(specialAbilityColor, currentColor, lerpTime));
+        SwitchMaterialSignal?.Invoke();
+        spiderXRayCamera.cullingMask = spiderDetectionLayer;
     }
 
     private IEnumerator LerpColor(Color fromColor, Color toColor, float duration)

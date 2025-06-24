@@ -8660,9 +8660,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33a5c55606f26e4fba529b411c02cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuseScriptableObject: {fileID: 11400000, guid: 1c4190c902f15834b8af2b7d9cdd00f8,
-    type: 2}
+  objectsNeededToTriggerDoor:
+  - {fileID: 11400000, guid: 1c4190c902f15834b8af2b7d9cdd00f8, type: 2}
   doorCannotOpenSound: {fileID: 1047542545}
+  missingObjectsDialogue: Missing fuse
+  nextLevelName: Level3
 --- !u!65 &1047542543
 BoxCollider:
   m_ObjectHideFlags: 0
