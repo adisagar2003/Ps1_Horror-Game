@@ -17,14 +17,14 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private float minDistanceToSetNewDestination = 3.0f;
 
     // State Handle
-    private PlayerStateHandle playerStateHandle; 
+    private PlayerMovement playerMovement; 
     private MonsterStateHandle monsterStateHandle;
 
     void Start()
     {
         monsterStateHandle = GetComponent<MonsterStateHandle>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        playerStateHandle = FindFirstObjectByType<PlayerStateHandle>();
+        playerMovement = FindFirstObjectByType<PlayerMovement>();
         SetNewDestination();
     }
 
@@ -36,7 +36,6 @@ public class MonsterMovement : MonoBehaviour
         randomDirection += transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, patrolRadius, 1);
-       
         return hit.position;
     }
 
@@ -58,6 +57,10 @@ public class MonsterMovement : MonoBehaviour
         if (monsterStateHandle.GetCurrentState() == MonsterStateHandle.MONSTER_TYPE.Patrol)
         {
             ResetPathIfTooClose();
+        } 
+        else
+        {
+            ChasePlayer();
         }
     }
 
@@ -67,14 +70,11 @@ public class MonsterMovement : MonoBehaviour
         {
             SetNewDestination();
         }
-        else
-        {
-            ChasePlayer();
-        }
+       
     }
 
     private void ChasePlayer()
     {
-        navMeshAgent.destination = playerStateHandle.transform.position;
+        navMeshAgent.destination = playerMovement.transform.position;
     }
 }
