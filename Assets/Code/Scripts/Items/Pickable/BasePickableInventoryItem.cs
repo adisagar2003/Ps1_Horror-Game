@@ -8,7 +8,7 @@ public class BasePickableInventoryItem : MonoBehaviour, IPickable
    
     [SerializeField] protected SOBasePickable so;
     [SerializeField] public int amount;
-
+    [SerializeField] private AudioClip pickupClip;
     public delegate void PickupEvent(SOBasePickable p);
     public static event PickupEvent OnPickupEvent;
     
@@ -19,6 +19,10 @@ public class BasePickableInventoryItem : MonoBehaviour, IPickable
         // send a signal... 1 object is picked up, send object 
         OnPickupEvent?.Invoke(so);
         Debug.Log("Event Invoked");
+        if (pickupClip != null)
+        {
+            AudioSource.PlayClipAtPoint(pickupClip, transform.position);
+        } 
         Destroy(gameObject, 0.5f);
     }
 
