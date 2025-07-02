@@ -6,7 +6,6 @@ public class Pickable : BasePickableInventoryItem
 {
     [SerializeField] private AudioClip pickupSound;
     [SerializeField] private float xRotationSpeed = 10.0f;
-    [SerializeField] private float yRotationSpeed = 10.0f;
     [SerializeField] private float pickupSoundVolume = 0.4f;
 
     public Pickable()

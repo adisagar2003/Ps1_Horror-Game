@@ -12,7 +12,7 @@ public class BasePickableInventoryItem : MonoBehaviour, IPickable
     public delegate void PickupEvent(SOBasePickable p);
     public static event PickupEvent OnPickupEvent;
     
-    [SerializeField] private float yRotationSpeed = 2.0f;
+    [SerializeField] protected float yRotationSpeed = 2.0f;
 
     public virtual void Pickup()
     {

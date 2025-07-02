@@ -12,7 +12,7 @@ public class SceneSystem : MonoBehaviour
     [SerializeField] private float fadeSpeed = 10.0f;
 
     // events
-    public delegate void SceneShift(string sceneName, int fadeTime);
+    public delegate void SceneShift(string sceneName, float fadeTime);
     public static event SceneShift OnSceneShift;
 
     private void Start()
@@ -29,7 +29,7 @@ public class SceneSystem : MonoBehaviour
         SceneSystem.OnSceneShift -= ChangeScene;
     }
 
-    private void ChangeScene(string sceneName, int fadeTime)
+    private void ChangeScene(string sceneName, float fadeTime)
     {
         StartCoroutine(MoveToNextScene(sceneName, fadeTime));
         StartCoroutine(FadeScreenToBlack());
@@ -48,13 +48,13 @@ public class SceneSystem : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveToNextScene(string sceneName, int fadeTime)
+    private IEnumerator MoveToNextScene(string sceneName, float fadeTime)
     {
         yield return new WaitForSeconds(fadeTime);
         SceneManager.LoadScene(sceneName);
     }
 
-    public static void Trigger(string sceneName, int fadeTime)
+    public static void Trigger(string sceneName, float fadeTime)
     {
         OnSceneShift?.Invoke(sceneName, fadeTime);
     }
