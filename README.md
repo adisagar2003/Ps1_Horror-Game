@@ -81,4 +81,4 @@ Inspired by classic lo-fi horror, the game uses low-poly visuals, dynamic lighti
 This project was built to **practice and understand how to ship a real playable game**, not to be perfect. If you want to see how it plays, check out:
 
 ▶️ [Gameplay Video](https://www.youtube.com/watch?v=yFhW1GE2UnY)  
-🕹️ [Play on Itch.io](https://your-itch-link-here)
+🕹️ [Play on Itch.io](https://sigaar.itch.io/black-factoryalpha)
